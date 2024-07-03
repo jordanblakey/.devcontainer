@@ -8,22 +8,19 @@
     "context": ".",
     "dockerfile": "Dockerfile"
   },
+  "features": {},
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root",
   // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {
-    "ghcr.io/cirolosapio/devcontainers-features/alpine-node:0": {}
-  },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [8080, 8888, 3000, 4200, 5000],
   // Configure tool-specific properties.
   // "customizations": {},
   "postCreateCommand": {
+    "prompt": "sed -E 's/(;31m|;36m)/;35m/g' ~/.bashrc > ~/out && mv -f ~/out ~/.bashrc",
     "hello": "uname -a; cat /etc/os-release | grep -e ^PRETTY_NAME= | cut -f 2 -d =; echo 'https://docs.alpinelinux.org/user-handbook'"
   },
-  "containerEnv": {
-    "key": "value"
-  },
+  // "containerEnv": { "key": "value" },
   "customizations": {
     "vscode": {
       "extensions": [

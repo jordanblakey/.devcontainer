@@ -6,12 +6,14 @@
     "context": ".",
     "dockerfile": "Dockerfile"
   },
-  "features": {},
+  "features": {
+    "ghcr.io/cirolosapio/devcontainers-features/alpine-docker-outside-of-docker:0": {}
+  },
   "postCreateCommand": {
     "bash_prompt": "sed -E 's/(;31m|;36m)/;35m/g' ~/.bashrc > ~/out && mv -f ~/out ~/.bashrc"
   },
   "postAttachCommand": {
-    "welcome": "printf '\n'; uname -a; echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d = -f 2) '- https://docs.alpinelinux.org/user-handbook'"
+    "welcome": "printf '\n'; uname -a; echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d = -f 2 | sed -e s/\\\"//g) '- https://docs.alpinelinux.org/user-handbook'"
   },
   // "forwardPorts": [8080],
   // "containerEnv": { "key": "value" },

@@ -19,18 +19,15 @@
   // "containerEnv": { "key": "value" },
   "customizations": {
     "vscode": {
-      "extensions": [
-        "enkia.tokyo-night"
-      ],
+      "extensions": ["enkia.tokyo-night", "esbenp.prettier-vscode"],
       "settings": {
         "workbench.colorTheme": "Tokyo Night Storm",
         "editor.formatOnSave": true,
         "editor.formatOnSaveMode": "file",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.minimap.showSlider": "always",
         "editor.renderWhitespace": "all",
-        "editor.rulers": [
-          80
-        ],
+        "editor.rulers": [80],
         "explorer.confirmDelete": false,
         "explorer.confirmDragAndDrop": false,
         "files.autoSave": "onFocusChange",

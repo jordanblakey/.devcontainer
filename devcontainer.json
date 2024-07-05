@@ -22,7 +22,8 @@
       "extensions": [
         "enkia.tokyo-night",
         "esbenp.prettier-vscode",
-        "Postman.postman-for-vscode"
+        "Postman.postman-for-vscode",
+        "ritwickdey.LiveServer"
       ],
       "settings": {
         "workbench.colorTheme": "Tokyo Night Storm",

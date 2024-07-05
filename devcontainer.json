@@ -19,7 +19,11 @@
   // "containerEnv": { "key": "value" },
   "customizations": {
     "vscode": {
-      "extensions": ["enkia.tokyo-night", "esbenp.prettier-vscode"],
+      "extensions": [
+        "enkia.tokyo-night",
+        "esbenp.prettier-vscode",
+        "Postman.postman-for-vscode"
+      ],
       "settings": {
         "workbench.colorTheme": "Tokyo Night Storm",
         "editor.formatOnSave": true,

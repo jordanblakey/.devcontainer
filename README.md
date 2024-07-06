@@ -13,15 +13,29 @@ reboot
 ## From disk OS
 
 ### Install basics
+- https://wiki.alpinelinux.org/wiki/Change_default_shell
 
-``` sh
-apk add git python3
+```sh
+apk add bash git vim tmux htop setxkbmap
+doas mv /usr/bin/vi /usr/bin/vi.bak
+doas ln -s /usr/bin/vim /usr/bin/vi
+setxkbmap -option caps:escape # Set this as a command in startup
+# TODO: Add steps to make this work in the LightDM greeter
+# TODO: Add steps to make lock screen work
+# TODO: Add steps to get suspend and log out working properly
+```
+
+### Setup Python
+```sh
+apk add python3
+python3 -m venv ~/.venv
+echo "alias venv=\"source ~/.venv/bin/activate\"" >> ~/.bashrc
 ```
 
 ### Install docker
 - https://wiki.alpinelinux.org/wiki/Docker
 
-``` sh
+```sh
 apk add docker docker-cli-compose
 apk addgroup $USER docker
 rc-update add docker default
@@ -38,6 +52,7 @@ addgroup $USER audio
 doas addgroup $USER audio
 doas addgroup root audio
 rc-service alsa start
+alsamixer # Unmute the master channel
 rc-update add alsa
 apk add pulseaudio pulseaudio-alsa 
 apk add xfce4-pulseaudio-plugin pavucontrol # Launcher > panels > add pulseaudio panel
@@ -50,4 +65,7 @@ apk add xfce4-pulseaudio-plugin pavucontrol # Launcher > panels > add pulseaudio
 ```
 sudo apk add flatpak
 flatpack install flathub com.spotify.Client
+flatpak run com.spotify.Client --username=<user> --password=<pass>
+flatpak install flathub com.visualstudio.code
+flatpak run com.visualstudio.code
 ```

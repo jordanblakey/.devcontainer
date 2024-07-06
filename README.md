@@ -14,13 +14,16 @@ reboot
 
 ### OS Tweaks
 ```sh
+apk add xfce4-screensaver # Enable Lock Screen and Suspend
+apk add xfce4-screenshooter # Enable Print Screen & Screenshots
+apk add xfce4-taskmanager # Enables Task Manager
+
 # Map capslock as a 2nd escape key
-doas apk add setxkbmap
+apk add setxkbmap
 setxkbmap -option caps:escape # Set this as a command in startup
+
 # Fix keyboard layout in light-dm
-doas vi /etc/lightdm/lightdm.conf # Under [:Seat], set display_startup_script=/usr/bin/setxkbmap us colemak
-# Enable Lock Screen and Suspend
-doas apk add xfce4-screensaver 
+vi /etc/lightdm/lightdm.conf # Under [:Seat], set display_startup_script=/usr/bin/setxkbmap us colemak
 ```
 
 ### Install basics
@@ -28,8 +31,8 @@ doas apk add xfce4-screensaver
 
 ```sh
 apk add bash git vim curl tmux htop 
-doas mv /usr/bin/vi /usr/bin/vi.bak
-doas ln -s /usr/bin/vim /usr/bin/vi
+mv /usr/bin/vi /usr/bin/vi.bak
+ln -s /usr/bin/vim /usr/bin/vi
 
 printf "set showmatch\nset incsearch\nset hlsearch\nset tabstop=2\n" >> ~/.vimrc
 printf "set expandtab\nset autoindent\nfiletype plugin indent on\n" >> ~/.vimrc
@@ -61,8 +64,8 @@ service docker start
 ```
 apk add alsa-utils alsaconf
 addgroup $USER audio
-doas addgroup $USER audio
-doas addgroup root audio
+addgroup $USER audio
+addgroup root audio
 rc-service alsa start
 alsamixer # Unmute the master channel
 rc-update add alsa
@@ -71,7 +74,7 @@ apk add xfce4-pulseaudio-plugin pavucontrol # Launcher > panels > add pulseaudio
 ```
 
 ### Install desktop apps
-- tl;dr Flatpak apps are glitchy on Alpine and have limitations around creating unsandboxed processes (say for doas and docker)
+- tl;dr Flatpak apps are glitchy on Alpine and have limitations around creating unsandboxed processes (say for and docker)
 ```
 # Install a Spotify daemon
 apk add spotifyd spotifyd-openrc
@@ -81,7 +84,7 @@ mkdir -p ~/.config/spotifyd && vi ~/.config/spotifyd/spotifyd.conf
 # Set keys username, password, backend, device_type: https://docs.spotifyd.rs/config/File.html
 
 # Install a Spotify CLI
-doas apk add build-base openssl-dev libssl3 libcrypto3 
+apk add build-base openssl-dev libssl3 libcrypto3 
 cargo install spotify-tui # resolve deps as needed
 
 # Run them together

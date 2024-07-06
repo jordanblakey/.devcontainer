@@ -30,6 +30,11 @@ doas apk add xfce4-screensaver
 apk add bash git vim curl tmux htop 
 doas mv /usr/bin/vi /usr/bin/vi.bak
 doas ln -s /usr/bin/vim /usr/bin/vi
+
+printf "set showmatch\nset incsearch\nset hlsearch\nset tabstop=2\n" >> ~/.vimrc
+printf "set expandtab\nset autoindent\nfiletype plugin indent on\n" >> ~/.vimrc
+printf "set number\nset relativenumber\nset cursorline\n" >> ~/.vimrc
+echo "set -g mouse on" >> ~/.tmux.conf
 ```
 
 ### Setup Python

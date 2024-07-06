@@ -71,6 +71,9 @@ alsamixer # Unmute the master channel
 rc-update add alsa
 apk add pulseaudio pulseaudio-alsa 
 apk add xfce4-pulseaudio-plugin pavucontrol # Launcher > panels > add pulseaudio panel
+# Media keys work with the above, but can customize for laptop
+apk add playerctl
+Keyboard > Application Shortcuts > `playerctl {previous,play-pause,next}`
 ```
 
 ### Install desktop apps

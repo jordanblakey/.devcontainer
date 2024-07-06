@@ -27,7 +27,7 @@ doas apk add xfce4-screensaver
 - https://wiki.alpinelinux.org/wiki/Change_default_shell
 
 ```sh
-apk add bash git vim tmux htop 
+apk add bash git vim curl tmux htop 
 doas mv /usr/bin/vi /usr/bin/vi.bak
 doas ln -s /usr/bin/vim /usr/bin/vi
 ```
@@ -66,13 +66,20 @@ apk add xfce4-pulseaudio-plugin pavucontrol # Launcher > panels > add pulseaudio
 ```
 
 ### Install desktop apps
-- Because many GUI applications are built on glibc (which Alpine has forgone in favor of musl), installing natively may prove difficult or impossible.
--  For instance, using Spotify web player depends on Widevine DRM browser plugin, which depends on glibc: https://wiki.postmarketos.org/wiki/Widevine
--  Flatpack provides apps bundled with their dependencies and runs them in a sandboxed environment: https://docs.flatpak.org/en/latest/introduction.html
+- tl;dr Flatpak apps are glitchy on Alpine and have limitations around creating unsandboxed processes (say for doas and docker)
 ```
-sudo apk add flatpak
-flatpack install flathub com.spotify.Client
-flatpak run com.spotify.Client --username=<user> --password=<pass>
-flatpak install flathub com.visualstudio.code
-flatpak run com.visualstudio.code
+# Install a Spotify daemon
+apk add spotifyd spotifyd-openrc
+apk add rustup
+rustup-init
+mkdir -p ~/.config/spotifyd && vi ~/.config/spotifyd/spotifyd.conf
+# Set keys username, password, backend, device_type: https://docs.spotifyd.rs/config/File.html
+
+# Install a Spotify CLI
+doas apk add build-base openssl-dev libssl3 libcrypto3 
+cargo install spotify-tui # resolve deps as needed
+
+# Run them together
+alias spotify="if pgrep -x "spotifyd" > /dev/null; then echo \"spotifyd is already running\"; else echo \"starting spotifyd\" && spotifyd; fi; spt"
+# There is a spotifyd-openrc package in apk, but I couldn't figure out which configuration files it used
 ```

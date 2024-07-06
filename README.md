@@ -71,9 +71,19 @@ alsamixer # Unmute the master channel
 rc-update add alsa
 apk add pulseaudio pulseaudio-alsa 
 apk add xfce4-pulseaudio-plugin pavucontrol # Launcher > panels > add pulseaudio panel
+
 # Media keys work with the above, but can customize for laptop
 apk add playerctl
 Keyboard > Application Shortcuts > `playerctl {previous,play-pause,next}`
+
+# Setup Bluetooth
+setup-devd udev
+apk add bluez blueman pulseaudio-bluez
+rc-service bluetooth add
+rc-update add bluetooth default
+rfkill list bluetooth 
+bluetoothctl # https://wiki.alpinelinux.org/wiki/Bluetooth
+# Use the blueman panel to troubleshoot 
 ```
 
 ### Install desktop apps

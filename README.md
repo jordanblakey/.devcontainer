@@ -12,17 +12,24 @@ reboot
 ```
 ## From disk OS
 
+### OS Tweaks
+```sh
+# Map capslock as a 2nd escape key
+doas apk add setxkbmap
+setxkbmap -option caps:escape # Set this as a command in startup
+# Fix keyboard layout in light-dm
+doas vi /etc/lightdm/lightdm.conf # Under [:Seat], set display_startup_script=/usr/bin/setxkbmap us colemak
+# Enable Lock Screen and Suspend
+doas apk add xfce4-screensaver 
+```
+
 ### Install basics
 - https://wiki.alpinelinux.org/wiki/Change_default_shell
 
 ```sh
-apk add bash git vim tmux htop setxkbmap
+apk add bash git vim tmux htop 
 doas mv /usr/bin/vi /usr/bin/vi.bak
 doas ln -s /usr/bin/vim /usr/bin/vi
-setxkbmap -option caps:escape # Set this as a command in startup
-# TODO: Add steps to make this work in the LightDM greeter
-# TODO: Add steps to make lock screen work
-# TODO: Add steps to get suspend and log out working properly
 ```
 
 ### Setup Python
